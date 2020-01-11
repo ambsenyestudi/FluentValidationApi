@@ -9,7 +9,7 @@
             Manages de TV Guide
             </summary>
         </member>
-        <member name="M:FluentValidationApi.Controllers.TVGuideController.Get">
+        <member name="M:FluentValidationApi.Controllers.TVGuideController.Get(FluentValidationApi.Models.ShowDateFiltered)">
             <summary>
             Gets you the shows from the tv guide
             </summary>
