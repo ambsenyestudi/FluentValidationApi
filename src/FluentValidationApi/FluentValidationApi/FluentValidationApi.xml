@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentValidationApi</name>
+    </assembly>
+    <members>
+        <member name="T:FluentValidationApi.Controllers.TVGuideController">
+            <summary>
+            Manages de TV Guide
+            </summary>
+        </member>
+        <member name="M:FluentValidationApi.Controllers.TVGuideController.Get">
+            <summary>
+            Gets you the shows from the tv guide
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

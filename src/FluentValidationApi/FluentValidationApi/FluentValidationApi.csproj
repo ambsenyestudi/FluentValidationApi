@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>2</WarningLevel>
+    <DocumentationFile>C:\Users\AdriF\source\repos\FluentValidationApi\src\FluentValidationApi\FluentValidationApi\FluentValidationApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
