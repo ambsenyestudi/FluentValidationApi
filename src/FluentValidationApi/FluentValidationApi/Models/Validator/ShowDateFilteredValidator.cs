@@ -11,25 +11,36 @@ namespace FluentValidationApi.Models.Validator
     {
         public ShowDateFilteredValidator()
         {
-            RuleFor(x => x.From).NotEmpty().WithMessage(x=>"From date neded");
-            RuleFor(x => x.To).NotEmpty().WithMessage(x => "To date neded");
-            RuleFor(x => ValidateDateIso(x.From,x.Iso)).LessThan(x => ValidateDateIso(x.To, x.Iso)).WithMessage(x=>"Invalid date period");
+            RuleFor(x => x).Must(IsValidDates).WithMessage(x=>"From and To dates neded");
+        }
+
+        private bool IsValidDates(ShowDateFiltered model)
+        {
+            var culture = GetCulture(model.Iso);
+            DateTime fromDate;
+            var isValidFrom = DateTime.TryParse(model.From, culture, DateTimeStyles.None, out fromDate);
+            if(isValidFrom)
+            {
+                DateTime toDate;
+                var isValidTo = DateTime.TryParse(model.To, culture, DateTimeStyles.None, out toDate);
+                if(isValidTo)
+                {
+                    return toDate >= fromDate;
+                }
+                return isValidTo;
+            }
+            return isValidFrom;
         }
         
-        private DateTime ValidateDateIso(string date, string iso)
+        private static CultureInfo GetCulture(string iso)
         {
-            //Futher control exceptions
-            if(string.IsNullOrWhiteSpace(date))
-            {
-                return default(DateTime);
-            }
             var culture = new CultureInfo("es", false);
-            if(!string.IsNullOrWhiteSpace(iso))
+            if (!string.IsNullOrWhiteSpace(iso))
             {
                 culture = new CultureInfo(iso, false);
             }
 
-            return DateTime.Parse(date, culture);
+            return culture;
         }
     }
 }
